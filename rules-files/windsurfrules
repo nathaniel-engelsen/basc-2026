@@ -1,0 +1,23 @@
+Security-first coding standards apply to all code in this project.
+Full reference: SECURITY.md in the project root.
+Accumulated lessons: LESSONS.md in the project root.
+
+ALWAYS:
+- No hardcoded secrets, API keys, tokens, or credentials — use environment variables
+  or a secrets manager. Flag any you find in existing code.
+- Parameterized queries or ORMs only — never string-concatenated SQL.
+- Validate all external inputs at the boundary using the project's validation library.
+- Never leak stack traces or internal errors to the client.
+- New dependencies: confirm actively maintained, no critical CVEs. Never guess package names.
+- Cloud/IAM config: propose least-privilege permissions, explain what each grants.
+
+FOR AUTH, DATA ACCESS, FILE HANDLING, OR EXTERNAL BOUNDARIES:
+Read the relevant section of SECURITY.md before writing code.
+Check LESSONS.md for any prior lessons in this area.
+Append after substantial code: "🔒 Security notes: [what was applied / open questions]"
+
+STYLE:
+Lead with code. One warning per issue — not repeated. Say so when speculating.
+
+PROJECT CONTEXT:
+[Fill in: validation library, auth approach, off-limits directories, hard constraints]

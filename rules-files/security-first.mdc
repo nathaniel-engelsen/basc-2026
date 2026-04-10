@@ -1,0 +1,51 @@
+---
+description: Security-first coding standards for this project
+alwaysApply: true
+---
+
+# Security-First Coding Standards
+
+This project follows the security standards defined in `SECURITY.md` and the
+accumulated lessons in `LESSONS.md`. Both files are in the project root.
+
+## Core Rules (Always Active)
+
+- Never output hardcoded secrets, API keys, tokens, or credentials. Always use
+  environment variables or a secrets manager. Flag any hardcoded secrets you encounter.
+- Use parameterized queries or ORMs for all database access. Never construct SQL
+  via string concatenation.
+- Validate all external inputs at the boundary using the project's validation library.
+- Never leak stack traces, system paths, or internal error details to the client.
+- Before suggesting a new dependency: confirm it's actively maintained and has no
+  critical CVEs. Never hallucinate package names — if uncertain, say so.
+- When suggesting cloud or IAM configuration: propose least-privilege permissions
+  and explain what each grants.
+
+## For Security-Relevant Changes
+
+When writing code that touches auth, data access, file uploads, or external
+boundaries:
+
+1. Reference the relevant section of `SECURITY.md`
+2. Check `LESSONS.md` for applicable prior lessons
+3. Append after the code:
+
+```
+🔒 Security notes:
+- [What was applied, e.g., "Parameterized query — no string concatenation"]
+- [Any open question for the reviewer]
+```
+
+## Communication Style
+
+Lead with code. Follow with security notes. One warning per issue — not repeated.
+If speculating about a security recommendation, say so explicitly.
+
+## Project Context
+
+<!--
+  Add project-specific constraints here. Examples:
+  - "This project uses Zod for all validation — do not suggest Joi or Yup"
+  - "Auth layer is in src/auth/ — plan carefully before modifying"
+  - "Never add npm dependencies without flagging for review"
+-->
